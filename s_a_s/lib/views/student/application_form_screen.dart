@@ -84,12 +84,7 @@ prefixIcon: Icons.numbers_rounded,
 keyboardType: TextInputType.number,
 controller: _yearController,
 onChanged: viewModel.setYearOfStudy,
-					validator: (value) {
-						if (value == null || value.isEmpty) return 'Required';
-						final year = int.tryParse(value);
-						if (year == null || year < 1 || year > 6) return 'Enter a valid year of study (1-6)';
-						return null;
-					},
+validator: (value) => value == null || value.isEmpty ? 'Required' : null,
 ),
 const SizedBox(height: 24),
 _buildDropdownLabel('Academic Level'),
