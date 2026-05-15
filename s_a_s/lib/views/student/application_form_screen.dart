@@ -78,14 +78,18 @@ title: 'Academic Context',
 icon: Icons.school_rounded,
 child: Column(
 children: [
-PremiumTextField(
-label: 'Year of Study',
-prefixIcon: Icons.numbers_rounded,
-keyboardType: TextInputType.number,
-controller: _yearController,
-onChanged: viewModel.setYearOfStudy,
-validator: (value) => value == null || value.isEmpty ? 'Required' : null,
-),
+							PremiumTextField(
+								label: 'Year of Study',
+								prefixIcon: Icons.numbers_rounded,
+								keyboardType: TextInputType.number,
+								controller: _yearController,
+								validator: (value) {
+									if (value == null || value.isEmpty) return 'Required';
+									final year = int.tryParse(value);
+									if (year == null || year < 1 || year > 6) return 'Enter a valid year of study (1-6)';
+									return null;
+								}, onChanged: (String year) {  },
+							),
 const SizedBox(height: 24),
 _buildDropdownLabel('Academic Level'),
 DropdownButtonFormField<String>(
@@ -331,15 +335,17 @@ child: ElevatedButton(
 onPressed: viewModel.isLoading
 ? null
 : () async {
-final authViewModel = context.read<AuthViewModel>();
-final student = authViewModel.currentUserData;
-if (student == null) {
-ScaffoldMessenger.of(context).showSnackBar(
-const SnackBar(content: Text('Session expired. Please log in again.')),
-);
-return;
-}
-final success = await viewModel.submitApplication(student);
+		// Sync year of study from controller before submit
+		viewModel.setYearOfStudy(_yearController.text);
+		final authViewModel = context.read<AuthViewModel>();
+		final student = authViewModel.currentUserData;
+		if (student == null) {
+			ScaffoldMessenger.of(context).showSnackBar(
+				const SnackBar(content: Text('Session expired. Please log in again.')),
+			);
+			return;
+		}
+		final success = await viewModel.submitApplication(student);
 if (context.mounted) {
 if (success) {
 ScaffoldMessenger.of(context).showSnackBar(
