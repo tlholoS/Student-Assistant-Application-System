@@ -2,6 +2,7 @@
 * Student Numbers: 224102916, 224099548, 223095490, 224004511, 224022386, 224097774, 224052285, 224019969, 224008698, 224053964
 * Student Names: Ramahlosi PD, Bere AM, Motlhakane M, Modisana MD, Simelane LW, Freeman C, Seitshiro TT, Lewis DC, Molefi MD, Mfuphi L
 */
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -259,7 +260,8 @@ class _ApplicationDetailsScreenState extends State<ApplicationDetailsScreen> {
                   prefixIcon: Icons.numbers_rounded,
                   controller: TextEditingController(text: _editYearOfStudy.toString()),
                   keyboardType: TextInputType.number,
-                  validator: (val) => val == null || val.isEmpty ? 'Required' : null,
+                  validator: (val) => val == null || val.isEmpty ? 'Required' : null, onChanged: (String year) {  },
+                 
                 ),
                 const SizedBox(height: 32),
                 SizedBox(

@@ -126,7 +126,7 @@ class PremiumTextField extends StatelessWidget {
     this.obscureText = false,
     this.controller,
     this.validator,
-    this.keyboardType,
+    this.keyboardType, required void Function(String year) onChanged,
   });
 
   @override

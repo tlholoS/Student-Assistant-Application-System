@@ -115,6 +115,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: 'First Name',
                                   controller: _firstNameController,
                                   validator: (value) => value == null || value.isEmpty ? 'Required' : null,
+                                  onChanged: (value){ setState(() {
+                                    
+                                  });},
                                 ),
                               ),
                               const SizedBox(width: 16),
@@ -123,6 +126,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   label: 'Last Name',
                                   controller: _lastNameController,
                                   validator: (value) => value == null || value.isEmpty ? 'Required' : null,
+                                  onChanged: (value){ setState(() {
+                                    
+                                  });},
                                 ),
                               ),
                             ],
@@ -140,6 +146,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (!value.contains('@')) return 'Invalid email';
                               return null;
                             },
+                            onChanged: (value){ setState(() {
+                              
+                            });},
                           ),
                           const SizedBox(height: 20),
                           
@@ -154,6 +163,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (value.length < 6) return 'Min 6 characters';
                               return null;
                             },
+                            onChanged: (value){ setState(() {
+                              
+                            });},
                           ),
                           const SizedBox(height: 20),
                           
@@ -167,6 +179,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (value != _passwordController.text) return 'Passwords do not match';
                               return null;
                             },
+                            onChanged: (value){ setState(() {
+                              
+                            });},
                           ),
                           const SizedBox(height: 40),
                           

@@ -140,6 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (!value.contains('@')) return 'Invalid email';
                               return null;
                             },
+                            onChanged: (value){
+                              setState(() { });
+                            }
                           ),
                           const SizedBox(height: 20),
                           
@@ -150,6 +153,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _passwordController,
                             obscureText: true,
                             validator: (value) => value == null || value.isEmpty ? 'Required' : null,
+                            onChanged: (value){ setState(() {
+                              
+                            });},
                           ),
                           const SizedBox(height: 40),
                           
